@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+    <head>
+        <title>NodeJS chat</title>
+        <link href="/style.css" rel="stylesheet" type="text/css" />
+        <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script src="/chat.js"></script>
+    </head>
+    <body style="background: url(http://www.enterprisecoding.com/wp-content/uploads/nodejs_logo_green.jpg);background-size: cover;">
+        <div class="container">
+    <div id="login" style="width: 30%; margin-left: 33%; margin-top: 25%; background-color: black; padding: 30px; opacity: 0.7">
+        <h3 class="text-center" style="color: white">Username:</h3>
+        <div class="form-group">
+            <input type="text" name="uid" id="username" class="form-control" />
+        </div>
+        <div class="from-group text-center">
+            <button type="button" onclick="connect()" class="btn btn-success">Connect</button>
+        </div>
+    </div>
+    <div id="chat" style="display: none">
+        <div class="col-sm-3">
+            <ul class="list-group" id="usersList">
+
+            </ul>
+        </div>
+        <div class="panel col-sm-9">
+            <!--Heading-->
+            <div class="panel-heading">
+                <div class="panel-control">
+                    <div class="btn-group">
+                        <button class="btn btn-default" type="button" data-toggle="collapse" data-target="#demo-chat-body"><i class="fa fa-chevron-down"></i></button>
+                        <button type="button" class="btn btn-default" data-toggle="dropdown"><i class="fa fa-gear"></i></button>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li><a href="#">Available</a></li>
+                            <li><a href="#">Busy</a></li>
+                            <li><a href="#">Away</a></li>
+                            <li class="divider"></li>
+                            <li><a id="demo-connect-chat" href="#" class="disabled-link" data-target="#demo-chat-body">Connect</a></li>
+                            <li><a id="demo-disconnect-chat" href="#" data-target="#demo-chat-body">Disconect</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <h3 class="panel-title" id="user-panel">Chat</h3>
+            </div>
+
+            <!--Widget body-->
+            <div id="demo-chat-body" class="collapse in">
+                <div class="nano has-scrollbar" style="height:380px">
+                    <div class="nano-content pad-all" tabindex="0" style="right: -17px;">
+                        <ul class="list-unstyled media-block" id="chat-content">
+                            <!--Chat messages -->
+                        </ul>
+                    </div>
+                    <div class="nano-pane"><div class="nano-slider" style="height: 141px; transform: translate(0px, 0px);"></div></div></div>
+
+                <!--Widget footer-->
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-9">
+                            <input id="user-msg-input" autofocus type="text" onkeypress="pressEnter(event)" placeholder="Enter your text" class="form-control chat-input">
+                        </div>
+                        <div class="col-xs-3">
+                            <button class="btn btn-primary btn-block" onclick="sendMessage()" type="button">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Send private message</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Write you message here</label>
+                    <textarea class="form-control" id="primate-msg-textarea" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" id="send-private-message">send</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+    </body>
+</html>
