@@ -1,16 +1,19 @@
 /**
  * Created by vladimir on 1/27/17.
  */
+// Check user browser
 $(document).ready(function () {
     if(window.localStorage.getItem('username')){
         $("#username").val(window.localStorage.getItem('username'));
         connect();
     }
 });
+// Public or private message
 let receiverForPrivate = false;
-let audio = new Audio(); // Создаём новый элемент Audio
+let audio = new Audio(); // create new Audio object
 audio.src = 'https://psv4.vk.me/c422330/u121723041/audios/2c3c674f3725.mp3'; // Указываем путь к звуку "клика"
-audio.autoplay = false; // Автоматически запускаем
+audio.autoplay = false; // Disable autoplay
+// Play audio just on call this function
 function playAudio() {
     audio.play();
     setTimeout(function () {
