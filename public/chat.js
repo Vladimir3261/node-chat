@@ -11,7 +11,7 @@ $(document).ready(function () {
 // Public or private message
 let receiverForPrivate = false;
 let audio = new Audio(); // create new Audio object
-audio.src = 'https://psv4.vk.me/c422330/u121723041/audios/2c3c674f3725.mp3'; // Указываем путь к звуку "клика"
+audio.src = 'https://psv4.vk.me/c422330/u121723041/audios/2c3c674f3725.mp3'; // Receive message sound
 audio.autoplay = false; // Disable autoplay
 // Play audio just on call this function
 function playAudio() {
